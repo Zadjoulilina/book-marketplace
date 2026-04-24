@@ -68,3 +68,6 @@
 - [x] Write vitest tests for key backend procedures (18 tests passing)
 - [x] Add COD-specific backend tests (23 tests passing)
 - [x] Final checkpoint and delivery
+
+## Bug Fixes
+- [x] Fix /authors route returning 404 error (created AuthorsList page)
