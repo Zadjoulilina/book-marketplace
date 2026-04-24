@@ -14,23 +14,41 @@ import {
   Library,
   Users,
   ArrowRight,
-  Star,
   BookMarked,
   TrendingUp,
+  Cpu,
+  FlaskConical,
+  Globe2,
+  Landmark,
+  Palette,
+  BarChart3,
+  BookText,
+  Shield,
+  Network,
+  Brain,
+  Church,
+  Feather,
 } from "lucide-react";
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 const CATEGORIES = [
-  { name: "Fiction", icon: "📖", color: "bg-amber-50 text-amber-700 border-amber-200" },
-  { name: "Non-Fiction", icon: "📚", color: "bg-blue-50 text-blue-700 border-blue-200" },
-  { name: "Science", icon: "🔬", color: "bg-green-50 text-green-700 border-green-200" },
-  { name: "Technology", icon: "💻", color: "bg-purple-50 text-purple-700 border-purple-200" },
-  { name: "History", icon: "🏛️", color: "bg-orange-50 text-orange-700 border-orange-200" },
-  { name: "Philosophy", icon: "🧠", color: "bg-rose-50 text-rose-700 border-rose-200" },
-  { name: "Art", icon: "🎨", color: "bg-pink-50 text-pink-700 border-pink-200" },
-  { name: "Business", icon: "📊", color: "bg-teal-50 text-teal-700 border-teal-200" },
+  { name: "Fiction", icon: BookText, color: "bg-amber-50 text-amber-700 border-amber-200" },
+  { name: "Non-Fiction", icon: BookOpen, color: "bg-blue-50 text-blue-700 border-blue-200" },
+  { name: "Science", icon: FlaskConical, color: "bg-green-50 text-green-700 border-green-200" },
+  { name: "Technology", icon: Cpu, color: "bg-purple-50 text-purple-700 border-purple-200" },
+  { name: "Artificial Intelligence", icon: Brain, color: "bg-violet-50 text-violet-700 border-violet-200" },
+  { name: "Computer Science", icon: Cpu, color: "bg-indigo-50 text-indigo-700 border-indigo-200" },
+  { name: "Cybersecurity", icon: Shield, color: "bg-red-50 text-red-700 border-red-200" },
+  { name: "Networks", icon: Network, color: "bg-cyan-50 text-cyan-700 border-cyan-200" },
+  { name: "History", icon: Landmark, color: "bg-orange-50 text-orange-700 border-orange-200" },
+  { name: "Philosophy", icon: Globe2, color: "bg-rose-50 text-rose-700 border-rose-200" },
+  { name: "Art", icon: Palette, color: "bg-pink-50 text-pink-700 border-pink-200" },
+  { name: "Business", icon: BarChart3, color: "bg-teal-50 text-teal-700 border-teal-200" },
+  { name: "Religious", icon: Church, color: "bg-yellow-50 text-yellow-700 border-yellow-200" },
+  { name: "Cultural", icon: Globe2, color: "bg-emerald-50 text-emerald-700 border-emerald-200" },
+  { name: "Literature", icon: Feather, color: "bg-lime-50 text-lime-700 border-lime-200" },
 ];
 
 export default function Home() {
@@ -55,11 +73,13 @@ export default function Home() {
       <section className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-background to-accent/30">
         <div className="container py-16 md:py-24">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-6xl font-bold font-[Playfair_Display] tracking-tight mb-6">
-              Discover, Buy & Borrow{" "}
+            <h1 className="text-4xl md:text-6xl font-bold font-[Playfair_Display] tracking-tight mb-4">
               <span className="text-primary">Books</span> You Love
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl font-semibold text-foreground/80 mb-6">
+              Discover, Buy &amp; Borrow
+            </p>
+            <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
               Join our community of readers. Find rare gems, sell your collection, or borrow from our digital library — all in one place.
             </p>
             <form onSubmit={handleSearch} className="flex gap-2 max-w-xl mx-auto mb-8">
@@ -136,17 +156,22 @@ export default function Home() {
             </Button>
           </Link>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
-          {CATEGORIES.map((cat) => (
-            <Link key={cat.name} href={`/marketplace?category=${encodeURIComponent(cat.name)}`}>
-              <Card className="hover:shadow-md transition-all hover:-translate-y-0.5 cursor-pointer border">
-                <CardContent className="p-4 text-center">
-                  <span className="text-2xl block mb-2">{cat.icon}</span>
-                  <span className="text-xs font-medium">{cat.name}</span>
-                </CardContent>
-              </Card>
-            </Link>
-          ))}
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3">
+          {CATEGORIES.map((cat) => {
+            const Icon = cat.icon;
+            return (
+              <Link key={cat.name} href={`/marketplace?category=${encodeURIComponent(cat.name)}`}>
+                <Card className="hover:shadow-md transition-all hover:-translate-y-0.5 cursor-pointer border">
+                  <CardContent className="p-4 text-center">
+                    <div className={`inline-flex items-center justify-center w-10 h-10 rounded-full mb-2 ${cat.color}`}>
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <span className="text-xs font-medium block leading-tight">{cat.name}</span>
+                  </CardContent>
+                </Card>
+              </Link>
+            );
+          })}
         </div>
       </section>
 

@@ -20,6 +20,7 @@ const BorrowBook = lazy(() => import("./pages/BorrowBook"));
 const Notifications = lazy(() => import("./pages/Notifications"));
 const AdminPanel = lazy(() => import("./pages/AdminPanel"));
 const AuthorsList = lazy(() => import("./pages/AuthorsList"));
+const Login = lazy(() => import("./pages/Login"));
 const AuthorPage = lazy(() => import("./pages/AuthorPage"));
 const PublisherPage = lazy(() => import("./pages/PublisherPage"));
 
@@ -46,6 +47,8 @@ function Router() {
         <Route path="/borrow/:id" component={BorrowBook} />
         <Route path="/notifications" component={Notifications} />
         <Route path="/admin" component={AdminPanel} />
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Login} />
         <Route path="/authors" component={AuthorsList} />
         <Route path="/author/:id" component={AuthorPage} />
         <Route path="/publisher/:id" component={PublisherPage} />

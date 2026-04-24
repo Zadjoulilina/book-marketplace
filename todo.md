@@ -71,3 +71,10 @@
 
 ## Bug Fixes
 - [x] Fix /authors route returning 404 error (created AuthorsList page)
+
+## Fixes & Improvements (Round 2)
+- [x] Fix "Please fill in all required fields" error in SellBook form (improved validation with field-level errors)
+- [x] Add new categories: AI, Computer Science, Cybersecurity, Networks, Religious, Cultural, Literature
+- [x] Fix hero section order: "Books You Love" first, then "Discover, Buy & Borrow"
+- [x] Replace all emoji with lucide-react icons across all pages
+- [x] Create Login/Register page (auth flow with Manus OAuth)

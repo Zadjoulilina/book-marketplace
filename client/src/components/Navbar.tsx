@@ -158,9 +158,14 @@ export default function Navbar() {
               </DropdownMenu>
             </>
           ) : (
-            <a href={getLoginUrl()}>
-              <Button>Sign In</Button>
-            </a>
+            <div className="flex items-center gap-2">
+              <Link href="/login">
+                <Button variant="outline" size="sm">Sign In</Button>
+              </Link>
+              <Link href="/register">
+                <Button size="sm">Sign Up</Button>
+              </Link>
+            </div>
           )}
         </div>
 
