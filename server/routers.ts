@@ -193,7 +193,12 @@ const ordersRouter = router({
       })),
     }))
     .mutation(async ({ ctx, input }) => {
-      const totalAmount = input.items.reduce((sum, item) => sum + parseFloat(item.priceAtPurchase) * item.quantity, 0);
+      let totalAmount = input.items.reduce((sum, item) => sum + parseFloat(item.priceAtPurchase) * item.quantity, 0);
+      // Add COD fee if applicable
+      if (input.paymentMethod === "cod") {
+        totalAmount += 2.00;
+      }
+      const orderStatus = input.paymentMethod === "cod" ? "pending" : "paid";
       const orderId = await db.createOrder({
         buyerId: ctx.user.id,
         totalAmount: String(totalAmount),
@@ -202,7 +207,7 @@ const ordersRouter = router({
         shippingCity: input.shippingCity,
         shippingZip: input.shippingZip,
         shippingCountry: input.shippingCountry,
-        status: "paid",
+        status: orderStatus,
       }, input.items);
       await db.clearCart(ctx.user.id);
       return { orderId };

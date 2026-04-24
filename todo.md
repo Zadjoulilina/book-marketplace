@@ -60,8 +60,11 @@
 - [x] Author pages (bio, works list)
 - [x] Publisher pages (description, works list)
 - [x] In-app notifications page
-- [ ] Stripe integration for real payment processing
+- [x] Replace Stripe with Cash on Delivery (COD) payment method
+- [x] Update Checkout page to support COD flow
+- [x] Update orders backend to handle COD orders
 
 ## Phase 8: Testing & Delivery
 - [x] Write vitest tests for key backend procedures (18 tests passing)
-- [ ] Final checkpoint and delivery
+- [x] Add COD-specific backend tests (23 tests passing)
+- [x] Final checkpoint and delivery

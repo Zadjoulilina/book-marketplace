@@ -179,3 +179,43 @@ describe("Notifications Router", () => {
     await expect(caller.notifications.list()).rejects.toThrow();
   });
 });
+
+describe("Orders Router - COD", () => {
+  it("orders.create requires authentication", async () => {
+    const caller = appRouter.createCaller(createPublicContext());
+    await expect(
+      caller.orders.create({
+        paymentMethod: "cod",
+        shippingAddress: "123 Main St",
+        shippingCity: "Test City",
+        shippingZip: "12345",
+        shippingCountry: "US",
+        items: [{ bookId: 1, quantity: 1, priceAtPurchase: "9.99" }],
+      })
+    ).rejects.toThrow();
+  });
+
+  it("orders.myOrders requires authentication", async () => {
+    const caller = appRouter.createCaller(createPublicContext());
+    await expect(caller.orders.myOrders()).rejects.toThrow();
+  });
+
+  it("orders.getById requires authentication", async () => {
+    const caller = appRouter.createCaller(createPublicContext());
+    await expect(caller.orders.getById({ id: 1 })).rejects.toThrow();
+  });
+});
+
+describe("Borrowings Router", () => {
+  it("borrowings.borrow requires authentication", async () => {
+    const caller = appRouter.createCaller(createPublicContext());
+    await expect(
+      caller.borrowings.borrow({ bookId: 1, durationDays: 14 })
+    ).rejects.toThrow();
+  });
+
+  it("borrowings.myBorrowings requires authentication", async () => {
+    const caller = appRouter.createCaller(createPublicContext());
+    await expect(caller.borrowings.myBorrowings()).rejects.toThrow();
+  });
+});
