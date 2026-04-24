@@ -78,3 +78,6 @@
 - [x] Fix hero section order: "Books You Love" first, then "Discover, Buy & Borrow"
 - [x] Replace all emoji with lucide-react icons across all pages
 - [x] Create Login/Register page (auth flow with Manus OAuth)
+
+## Seed Data
+- [x] Add realistic seed data: 15 authors, 8 publishers, 26 books across 12 categories, 27 reviews
