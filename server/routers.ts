@@ -146,6 +146,26 @@ const booksRouter = router({
   bySeller: protectedProcedure.query(async ({ ctx }) => {
     return db.getBooksBySellerId(ctx.user.id);
   }),
+  getUserBooks: protectedProcedure
+    .query(async ({ ctx }) => {
+      const books = await db.getBooksBySellerId(ctx.user.id);
+      const stats = {
+        total: books.length,
+        available: books.filter((b: any) => b.status === "available").length,
+        sold: books.filter((b: any) => b.status === "sold").length,
+        borrowed: books.filter((b: any) => b.status === "borrowed").length,
+      };
+      return { books, stats };
+    }),
+  updateStatus: protectedProcedure
+    .input(z.object({ id: z.number(), status: z.enum(["available", "sold", "borrowed", "unavailable"]) }))
+    .mutation(async ({ ctx, input }) => {
+      const book = await db.getBookById(input.id);
+      if (!book) throw new Error("Book not found");
+      if (book.sellerId !== ctx.user.id && ctx.user.role !== "admin") throw new Error("Unauthorized");
+      await db.updateBook(input.id, { status: input.status });
+      return { success: true };
+    }),
 });
 
 // ─── Cart Router ─────────────────────────────────────────────────────
@@ -422,3 +442,6 @@ export const appRouter = router({
 });
 
 export type AppRouter = typeof appRouter;
+
+// Add getUserBooks and updateStatus to booksRouter
+// This is a workaround due to JSON parsing issues with the file tool

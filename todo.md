@@ -81,3 +81,8 @@
 
 ## Seed Data
 - [x] Add realistic seed data: 15 authors, 8 publishers, 26 books across 12 categories, 27 reviews
+
+## Bug Fixes (Round 3)
+- [x] Fix /dashboard/books route returning 404 error (created DashboardBooks page with book management)
+- [x] Fix auth handling in DashboardBooks (move redirect to useEffect)
+- [x] Secure getUserBooks endpoint (check ctx.user.id instead of trusting client userId)

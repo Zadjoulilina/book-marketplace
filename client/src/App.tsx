@@ -12,6 +12,7 @@ const Home = lazy(() => import("./pages/Home"));
 const Marketplace = lazy(() => import("./pages/Marketplace"));
 const BookDetail = lazy(() => import("./pages/BookDetail"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
+const DashboardBooks = lazy(() => import("./pages/DashboardBooks"));
 const SellBook = lazy(() => import("./pages/SellBook"));
 const EditBook = lazy(() => import("./pages/EditBook"));
 const Cart = lazy(() => import("./pages/Cart"));
@@ -39,6 +40,7 @@ function Router() {
         <Route path="/" component={Home} />
         <Route path="/marketplace" component={Marketplace} />
         <Route path="/book/:id" component={BookDetail} />
+        <Route path="/dashboard/books" component={DashboardBooks} />
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/sell" component={SellBook} />
         <Route path="/edit-book/:id" component={EditBook} />
